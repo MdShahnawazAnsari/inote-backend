@@ -4,7 +4,18 @@ const { body, validationResult } = require("express-validator");
 const Notes = require("../models/Notes");
 const fetchuser = require("../middleware/fetchuser");
 
-// Route 1: Adding a Note with post "api/notes/addnote" login required
+// Route 1: Getting all Notes with get "api/notes/fetchallnotes" login required
+router.get("/fetchallnotes", fetchuser, async (req, res) => {
+  try {
+    const notes = await Notes.find({ user: req.user.id });
+    res.json(notes);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route 2: Adding a Note with post "api/notes/addnote" login required
 router.post(
   "/addnote",
   [
@@ -39,20 +50,10 @@ router.post(
   }
 );
 
-// Route 2: Getting all Notes with get "api/notes/getnotes" login required
-router.get("/fetchallnotes", fetchuser, async (req, res) => {
-  try {
-    const notes = await Notes.find({ user: req.user.id });
-    res.json(notes);
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
 // Route 3: Updating an Notes with put "api/notes/updatenote/:id" login required
 router.put("/updatenote/:id", fetchuser, async (req, res) => {
   const { title, description, tag } = req.body;
+  let id = req.params.id;
   const newNote = {};
   if (title) {
     newNote.title = title;
@@ -65,7 +66,7 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
   }
   try {
     // Find the note to be updated
-    let note = await Notes.findById(req.params.id);
+    let note = await Notes.findById(id);
     if (!note) {
       return res.status(404).send("Note Not Found");
     }
@@ -74,11 +75,7 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
       return res.status(401).send("Not Allowed");
     }
     // Find the note and update it
-    note = await Notes.findByIdAndUpdate(
-      req.params.id,
-      { $set: newNote },
-      { new: true }
-    );
+    note = await Notes.findByIdAndUpdate(id, { $set: newNote }, { new: true });
     res.json(note);
   } catch (error) {
     console.log(error.message);
@@ -89,8 +86,9 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
 // Route 4: Deleting an Notes with Delete "api/notes/deletenote/:id" login required
 router.delete("/deletenote/:id", fetchuser, async (req, res) => {
   try {
+    let id = req.params.id;
     // Find the note to be deleted
-    let note = await Notes.findById(req.params.id);
+    let note = await Notes.findById(id);
     // if the note is not present
     if (!note) {
       return res.status(404).send("Note Not Found");
@@ -100,7 +98,7 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
       return res.status(401).send("Not Allowed");
     }
     // Deleteing the note
-    note = await Notes.findByIdAndDelete(req.params.id);
+    note = await Notes.findByIdAndDelete(id);
     res.json({ note, Success: "Your Note has been Deleted" });
   } catch (error) {
     console.log(error.message);

@@ -1,4 +1,3 @@
-const { json } = require("express");
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
@@ -6,9 +5,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const JWT_SECRET = "mySecretI&MyBussiness@ndNotY0r";
-const fetchuser = require("../middleware/fetchuser");
 
-// // getting all User with get "api/auth/users" no login required
+// getting all User with get "api/auth/users" no login required
 // router.get("/users", async (req, res) => {
 //   try {
 //     let allUsers = await User.find();
@@ -123,15 +121,4 @@ router.post(
   }
 );
 
-// Route 3: Geting User with post "api/auth/getuser" login required
-router.post("/getuser", fetchuser, async (req, res) => {
-  try {
-    userId = req.user.id;
-    const user = await User.findById(userId).select("-password");
-    res.send(user);
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Internal Server Error");
-  }
-});
 module.exports = router;

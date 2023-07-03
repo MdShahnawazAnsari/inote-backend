@@ -1,0 +1,148 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "i-Note",
+    "dateExported": "2023-07-03T15:40:00.355Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "ccb5766d-2f58-4f79-b926-9fc44afa91ee",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2023-07-03T15:05:24.118Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "c8b1eb61-0a45-40c2-bf4f-3eb4f14fba9d",
+            "name": "Notes",
+            "containerId": "",
+            "created": "2023-07-03T15:09:52.624Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "700baa59-7e00-48e9-a1bc-c0daeaa8c5ec",
+            "colId": "a2699418-bc9d-4ddb-9ab7-a99a6544abb1",
+            "containerId": "ccb5766d-2f58-4f79-b926-9fc44afa91ee",
+            "name": "add user",
+            "url": "http://localhost:3000/api/auth/createuser",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-03T15:05:34.909Z",
+            "modified": "2023-07-03T15:08:43.667Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test1\",\n  \"email\": \"test1@test.com\",\n  \"password\": \"test123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cb6f4e47-435c-4920-a898-23343982d137",
+            "colId": "a2699418-bc9d-4ddb-9ab7-a99a6544abb1",
+            "containerId": "ccb5766d-2f58-4f79-b926-9fc44afa91ee",
+            "name": "Login User",
+            "url": "http://localhost:3000/api/auth/loginuser",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-07-03T15:08:57.994Z",
+            "modified": "2023-07-03T15:09:38.329Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"test1@test.com\",\n  \"password\": \"test123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e2b33055-e03e-4492-ae38-e052f849f107",
+            "colId": "a2699418-bc9d-4ddb-9ab7-a99a6544abb1",
+            "containerId": "c8b1eb61-0a45-40c2-bf4f-3eb4f14fba9d",
+            "name": "Get All Notes",
+            "url": " https://joyous-hen-loincloth.cyclic.app/api/notes/fetchallnotes",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-07-03T15:10:04.139Z",
+            "modified": "2023-07-03T15:32:04.475Z",
+            "headers": [
+                {
+                    "name": "auth-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhMmU0N2JmYjc1MzQwZDI2NTAyOTg3In0sImlhdCI6MTY4ODM5Njk3OH0.I_KjPqsggL8eJydbAm7Q52OMEsd1ULWKPvlkUS6Z4VQ"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "551c79c1-6ad5-4f4b-b5a1-2178ea8efac6",
+            "colId": "a2699418-bc9d-4ddb-9ab7-a99a6544abb1",
+            "containerId": "c8b1eb61-0a45-40c2-bf4f-3eb4f14fba9d",
+            "name": "Add Note",
+            "url": "http://localhost:3000/api/notes/addnote",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-07-03T15:15:21.037Z",
+            "modified": "2023-07-03T15:26:58.254Z",
+            "headers": [
+                {
+                    "name": "auth-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhMmU0N2JmYjc1MzQwZDI2NTAyOTg3In0sImlhdCI6MTY4ODM5Njk3OH0.I_KjPqsggL8eJydbAm7Q52OMEsd1ULWKPvlkUS6Z4VQ"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"test delete\",\n  \"description\": \"test for delete\",\n  \"tag\": \"delete\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4dc4f786-3608-4e90-9b1b-261064f84e7c",
+            "colId": "a2699418-bc9d-4ddb-9ab7-a99a6544abb1",
+            "containerId": "c8b1eb61-0a45-40c2-bf4f-3eb4f14fba9d",
+            "name": "Update Note",
+            "url": "http://localhost:3000/api/notes/updatenote/64a2e6a664e54efb4a4a4b70",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2023-07-03T15:19:02.019Z",
+            "modified": "2023-07-03T15:24:43.298Z",
+            "headers": [
+                {
+                    "name": "auth-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhMmU0N2JmYjc1MzQwZDI2NTAyOTg3In0sImlhdCI6MTY4ODM5Njk3OH0.I_KjPqsggL8eJydbAm7Q52OMEsd1ULWKPvlkUS6Z4VQ"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"test updated\",\n  \"description\": \"test updated\",\n  \"tag\": \"also updated\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cf82526d-13e8-4fb8-ae7d-463a679481e8",
+            "colId": "a2699418-bc9d-4ddb-9ab7-a99a6544abb1",
+            "containerId": "c8b1eb61-0a45-40c2-bf4f-3eb4f14fba9d",
+            "name": "Delete Note",
+            "url": "http://localhost:3000/api/notes/deletenote/64a2e8c3a7e5f01b49599513",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2023-07-03T15:19:09.390Z",
+            "modified": "2023-07-03T15:27:43.438Z",
+            "headers": [
+                {
+                    "name": "auth-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhMmU0N2JmYjc1MzQwZDI2NTAyOTg3In0sImlhdCI6MTY4ODM5Njk3OH0.I_KjPqsggL8eJydbAm7Q52OMEsd1ULWKPvlkUS6Z4VQ"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
