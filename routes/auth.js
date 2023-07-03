@@ -7,14 +7,14 @@ const { body, validationResult } = require("express-validator");
 const JWT_SECRET = "mySecretI&MyBussiness@ndNotY0r";
 
 // getting all User with get "api/auth/users" no login required
-// router.get("/users", async (req, res) => {
-//   try {
-//     let allUsers = await User.find();
-//     res.send(allUsers);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+router.get("/users", async (req, res) => {
+  try {
+    let allUsers = await User.find();
+    res.send(allUsers);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // Route 1: Creating User with post "api/auth/createuser" no login required
 router.post(
